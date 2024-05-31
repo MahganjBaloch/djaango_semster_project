@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>HTML to Markdown Converter</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+        }
+        h1 {
+            color: #333;
+        }
+        form {
+            background-color: pink;
+            padding: 20px;
+            margin-bottom: 20px;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        textarea {
+            width: 100%;
+            padding: 8px;
+            margin-bottom: 8px;
+            border: 2px solid #ccc;
+            border-radius: 8px;
+            resize: vertical;
+        }
+        textarea:hover {
+            background-color: white;
+        }
+        button {
+            padding: 8px 10px;
+            background-color: green;
+            color: #fff;
+            border: none;
+            border-radius: 2px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+        .converted-content {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+    </style>
+</head>
+<body>
+    <h1>Convert HTML to Markdown</h1>
+    
+<form method="post">
+    {% csrf_token %}
+    <textarea name="html_content" rows="10" placeholder="Enter HTML content here">{{ converted_html_content|safe }}</textarea>
+    <button type="submit" name="action" value="convert_to_markdown">Convert to Markdown</button>
+    <button type="submit" name="action" value="delete_html">Delete</button>
+   
+</form>
+    <h1>Convert Markdown to HTML</h1>
+    <form method="post">
+        {% csrf_token %}
+        
+        <textarea name="markdown_text" rows="10" placeholder="Enter Markdown content here">{{ converted_markdown_content|safe }}</textarea>
+        <button type="submit" name="action" value="convert_to_html">Convert to HTML</button>
+        <button type="submit" name="action" value="delete_markdown">Delete</button>
+        
+    </form>
+    
+</body>
+</html>
